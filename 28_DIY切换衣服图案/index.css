@@ -1,0 +1,73 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+body {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #404749;
+}
+.container {
+  position: relative;
+}
+.shirt {
+  position: relative;
+  height: 80vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.shirt img {
+  height: 100%;
+}
+.shirt-overlay {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+.shirt-overlay img {
+  height: 100%;
+  /* 设置混合模式为正片叠底 */
+  mix-blend-mode: multiply;
+}
+.shirt-overlay-pattern {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  /* 设置元素上遮罩的图像 */
+  mask-image: url(./imgs/t_shirt_mask.png);
+  -webkit-mask-image: url(./imgs/t_shirt_mask.png);
+  /* 掩码图像的大小 保持图像纵横比 */
+  mask-size: contain;
+  -webkit-mask-size: contain;
+}
+/* 图像选项 */
+.options {
+  position: absolute;
+  bottom: 0;
+  right: -100px;
+}
+.option {
+  width: 50px;
+  height: 50px;
+  border-radius: 5px;
+  border: 3px solid #fff;
+  background-color: #e2e2e2;
+  overflow: hidden;
+  margin-top: 10px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+.option img {
+  width: 100%;
+  height: 100%;
+}
+/* 选中态 */
+.option.active {
+  border-color: #ff6b81;
+}
+.option:hover {
+  border-color: #ff6b81;
+}

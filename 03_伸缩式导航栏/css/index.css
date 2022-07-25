@@ -1,0 +1,82 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+body {
+  height: 100vh;
+  background: linear-gradient(200deg, #ddd6f3, #faaca8);
+}
+body,
+.navbar,
+.navbar ul {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.navbar {
+  position: relative;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 50px;
+}
+.navbar input {
+  width: 40px;
+  height: 40px;
+  opacity: 0;
+  cursor: pointer;
+}
+.navbar span {
+  position: absolute;
+  left: 25px;
+  width: 30px;
+  height: 4px;
+  top: calc(50% - 10px);
+  border-radius: 15px;
+  background-color: #999;
+  /* 现在span覆盖着复选框，鼠标放到span上是点不中复选框的，
+  下面这个属性就可以解决这个问题，即便鼠标放到span上点击也能选中或取消选中复选框 */
+  pointer-events: none;
+  /* 收回来的时候过渡刚好是相反的 */
+  transition: transform 0.3s ease-in-out, top 0.3s ease-in-out 0.3s;
+}
+.navbar span:nth-child(3) {
+  top: calc(50% + 6px);
+}
+.navbar ul {
+  width: 0;
+  overflow: hidden;
+  transition: all 0.5s;
+  /* 大家应该也发现了，现在导航栏收起的时候，这个圆是扁的 */
+  /* 这个问题是因为文字被换行显示了，两个汉字竖着排列了，
+    所以盒子被撑大了，下面这个属性就可以解决这个问题，让文字不换行显示 */
+  white-space: nowrap;
+}
+.navbar ul li {
+  list-style: none;
+  margin: 0px 15px;
+}
+.navbar ul li a {
+  text-decoration: none;
+  font-size: 20px;
+  font-weight: 700;
+  color: #333;
+}
+.navbar ul li a:hover {
+  color: #fb7299;
+}
+/* :checked 是当复选框被选中的时候， ~ 是兄弟选择器，查找同一级的ul */
+.navbar input:checked ~ ul {
+  width: 350px;
+}
+.navbar input:checked ~ span:nth-child(2) {
+  top: calc(50% - 2px);
+  transform: rotate(-45deg);
+  background-color: #fb7299;
+  transition: top 0.3s ease-in-out, transform 0.3s ease-in-out 0.3s;
+}
+.navbar input:checked ~ span:nth-child(3) {
+  top: calc(50% - 2px);
+  transform: rotate(45deg);
+  background-color: #fb7299;
+  transition: top 0.3s ease-in-out, transform 0.3s ease-in-out 0.3s;
+}

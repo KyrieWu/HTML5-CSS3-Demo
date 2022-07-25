@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>切片式轮播图</title>
+    <link rel="stylesheet" href="./index.css" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="big-box"></div>
+      <div class="small-box">
+        <div class="img"><img src="./imgs/1.jpg" alt="" /></div>
+        <div class="img"><img src="./imgs/2.jpg" alt="" /></div>
+        <div class="img"><img src="./imgs/3.jpg" alt="" /></div>
+        <div class="img"><img src="./imgs/4.jpg" alt="" /></div>
+        <div class="img"><img src="./imgs/5.jpg" alt="" /></div>
+      </div>
+    </div>
+
+    <script>
+      let big_box = document.querySelector(".big-box");
+      let imgs = document.getElementsByClassName("img");
+      let timer = null;
+      let index = 0;
+
+      function reset() {
+        for (let i = 0; i < imgs.length; i++) {
+          imgs[i].className = "img";
+        }
+      }
+
+      function selected() {
+        reset();
+        imgs[index].className = "img active";
+      }
+
+      function play() {
+        timer = setInterval(function () {
+          selected();
+          index++;
+          big_box.style.backgroundImage = "url(./imgs/" + index + ".jpg)";
+          if (index == 5) {
+            index = 0;
+          }
+        }, 1500);
+      }
+
+      for (let i = 0; i < imgs.length; i++) {
+        imgs[i].onmousemove = function () {
+          big_box.style.backgroundImage = "url(./imgs/" + (i + 1) + ".jpg)";
+          reset();
+          clearInterval(timer);
+          index = i + 1;
+          if (index == 5) {
+            index = 0;
+          }
+          play();
+        };
+      }
+      play();
+    </script>
+  </body>
+</html>

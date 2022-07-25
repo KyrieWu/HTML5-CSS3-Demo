@@ -1,0 +1,74 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 100vw;
+  height: 100vh;
+  background: radial-gradient(circle at center, #555, #000);
+}
+.container a {
+  position: relative;
+  display: block;
+  width: 140px;
+  height: 60px;
+  line-height: 60px;
+  text-align: center;
+  margin: 40px;
+  color: plum;
+  text-decoration: none;
+  font-size: 20px;
+
+  /* 加动画过渡 */
+  transition: all 0.3s ease-in-out;
+
+  /* 我们来改变各个a元素的颜色【重点】 */
+  /* hue-rotate 是颜色滤镜，可以加不同的读书来改变颜色，这里我们用了
+  calc自动计算函数，以及var函数来调用我们给每一个a元素设置的不同的自定义属性
+  1~5，然后分别乘以60度，就能够分别得到不同的颜色 */
+  filter: hue-rotate(calc(var(--i) * 60deg));
+}
+.container a::before,
+.container a::after {
+  content: "";
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  border: 2px solid plum;
+
+  /* 加动画过渡 */
+  transition: all 0.3s ease-in-out 0.3s;
+}
+.container a::before {
+  top: 0;
+  left: 0;
+  border-right: 0;
+  border-bottom: 0;
+}
+.container a::after {
+  right: 0;
+  bottom: 0;
+  border-left: 0;
+  border-top: 0;
+}
+.container a:hover {
+  background-color: plum;
+  color: #000;
+  box-shadow: 0 0 50px plum;
+  /* below 是下倒影， 1px 是倒影和元素相隔的距离，最后是渐变颜色 */
+  -webkit-box-reflect: below 1px
+    linear-gradient(transparent, rgba(0, 0, 0, 0.3));
+  /*加延迟时间 */
+  transition-delay: 0.4s;
+}
+.container a:hover::before,
+.container a:hover::after {
+  width: 138px;
+  height: 58px;
+  /* 不需要延迟 */
+  transition-delay: 0s;
+}
