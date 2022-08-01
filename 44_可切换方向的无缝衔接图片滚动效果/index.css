@@ -1,0 +1,52 @@
+* {
+  padding: 0;
+  margin: 0;
+}
+body {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #1b1b1b;
+}
+.container {
+  width: 800px;
+  position: relative;
+  overflow: hidden;
+}
+ul {
+  width: 800px;
+  height: 150px;
+  overflow: hidden;
+  display: flex;
+  position: relative;
+}
+li {
+  list-style: none;
+  height: 100%;
+  padding-right: 20px;
+}
+li img {
+  width: 200px;
+  height: 150px;
+  /*保持原有尺寸比例，裁切长边 */
+  object-fit: cover;
+  /* 图片定位正中间 */
+  object-position: center;
+}
+.btns {
+  display: flex;
+  justify-content: center;
+  padding-top: 50px;
+}
+.btn {
+  color: #fff;
+  border: 1px solid #ddd;
+  margin: 0 15px;
+  font-size: 14px;
+  border-radius: 3px;
+  cursor: pointer;
+}
+.btn:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+}
