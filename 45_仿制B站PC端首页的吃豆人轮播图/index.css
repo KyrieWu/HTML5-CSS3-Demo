@@ -1,0 +1,158 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+body {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(200deg, #e6e9f0, #eef1f5);
+}
+li {
+  list-style: none;
+}
+.container {
+  width: 488px;
+  height: 360px;
+  border-radius: 6px;
+  overflow: hidden;
+}
+.img-box {
+  height: 275px;
+  display: flex;
+  margin-left: calc(-488px * var(--m-left));
+  /* 过渡 */
+  transition: 0.35s;
+}
+.img-box img {
+  width: 488px;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+.bottom-box {
+  height: calc(360px - 275px);
+  display: flex;
+  --b-color: #000;
+  background-color: var(--b-color);
+  color: #fff;
+  position: relative;
+}
+/* 图片底部的渐变部分 */
+.bottom-box::before {
+  content: "";
+  width: 100%;
+  height: 50px;
+  background: linear-gradient(to bottom, transparent, var(--b-color));
+  position: absolute;
+  top: -50px;
+}
+/* 底部区域的左侧部分 */
+.bottom-box .l-box {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-left: 12px;
+  /* 计算宽度 */
+  width: calc(488px -92px -12px);
+}
+.bottom-box .title {
+  width: 100%;
+  font-size: 18px;
+  line-height: 25px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.bottom-box .dots {
+  display: flex;
+  margin-top: 10px;
+}
+.bottom-box li {
+  width: 8px;
+  height: 8px;
+  background-color: rgba(255, 255, 255, 0.4);
+  margin: 4px;
+  cursor: pointer;
+  border-radius: 50%;
+}
+.bottom-box li.pacman {
+  position: relative;
+  width: 14px;
+  height: 14px;
+  background-color: transparent;
+  margin-top: 1px;
+}
+/*吃豆人有两个div组成 */
+.bottom-box li.pacman div {
+  width: 0;
+  height: 0;
+  border: 7px solid #fff;
+  border-radius: 50%;
+  border-right-width: 7px;
+  border-right-color: transparent;
+  position: absolute;
+}
+/* 吃豆人朝向左 */
+.bottom-box li.pacman.l {
+  transform: rotate(180deg);
+}
+/* 接下来分别为吃豆人的两个部分设置动画 */
+.bottom-box li.pacman div:nth-child(1) {
+  /* 执行动画：动画名 时长 线性的 停留在最后一帧 */
+  animation: pacman1 0.75s linear forwards;
+}
+.bottom-box li.pacman div:nth-child(2) {
+  animation: pacman2 0.75s linear forwards;
+}
+/* 底部右侧部分 */
+.bottom-box .r-box {
+  display: flex;
+  padding-top: 12px;
+  padding-left: 12px;
+}
+.bottom-box .r-box i {
+  background-color: rgba(255, 255, 255, 0.1);
+  width: 28px;
+  height: 28px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 8px;
+  font-size: 16px;
+  margin-right: 12px;
+}
+.bottom-box .r-box i:hover {
+  cursor: pointer;
+  background-color: rgba(255, 255, 255, 0.2);
+}
+/* 定义吃豆人动画 */
+@keyframes pacman1 {
+  0% {
+    transform: rotate(360deg);
+  }
+  40% {
+    transform: rotate(270deg);
+  }
+  60% {
+    transform: rotate(360deg);
+  }
+  100% {
+    transform: rotate(270deg);
+  }
+}
+@keyframes pacman2 {
+  0% {
+    transform: rotate(0deg);
+  }
+  40% {
+    transform: rotate(90deg);
+  }
+  60% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(90deg);
+  }
+}
